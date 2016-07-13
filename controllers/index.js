@@ -1,11 +1,21 @@
 var express = require('express')
-  , router = express.Router();
+  , router = express.Router()
+  ;
 
-router.use('/hash', require('./hash'));
-router.use('/users', require('./users'));
+var returnRouter = function(io){
 
-router.get('/', function(req, res) {
-  res.render('index');
-});
+  router.use('/hash', require('./hash'));
+  router.use('/users', require('./users'));
 
-module.exports = router;
+  router.get('/', function(req, res) {
+    res.render('index');
+  });
+
+  router.get('/@:hash',function(req, res){
+    var hash = req.params.hash;
+    res.render('hash/hash',{hash: hash});
+  });
+  return router;
+};
+
+module.exports = returnRouter;
