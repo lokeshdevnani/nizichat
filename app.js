@@ -18,50 +18,68 @@ server.listen(port, function() {
   console.log('Listening on port ' + port);
 });
 
-var user = {
-  id:'',
-  room:'',
-  avatar:''
-};
+var users = {};
 
 io.on('connection',function(socket){
-  console.log('New connection');
+  console.log('New connection '+ socket.id);
 
   socket.on('join-room',function(room){
     socket.join(room);
-    socket.room = room;
-    socket.broadcast.to(socket.room).emit('user-joined','User Joined');
 
-    var roomMembers = socket.adapter.rooms[socket.room];
-    console.log(socket);
-    console.log(roomMembers);
-    if(roomMembers && roomMembers.sockets){
-      socket.emit('user-list', Object.keys(roomMembers.sockets).map((key)=> key ));
-      socket.emit('user-list', socket.id);
-    }
+    var userObj = {
+      id: socket.id,
+      room: room,
+      username: 'Agent '+ Math.round(Math.random()*100),
+      avatar: 'default'
+    };
+    users[socket.id] = userObj;
+
+    socket.broadcast.to(room).emit('user-joined', userObj);
+
+    var getRoomMembers = function(roomObj){
+      var roomMembers = (roomObj && roomObj.sockets) ? (roomObj.sockets) : '';
+      if(roomMembers){
+        for(var key in roomMembers){
+          roomMembers[key] = users[key];
+        }
+        return roomMembers;
+      }
+      return null;
+    };
+
+    socket.emit('user-list', {
+      myId: socket.id,
+      users: getRoomMembers(socket.adapter.rooms[room])
+    });
 
   });
 
   socket.on('username-change',function(newUsername){
-    socket.broadcast.to(socket.room).emit('username-changed',{
-      'new' : newUsername,
-      'old' : socket.username
+    users[socket.id].username = newUsername;
+    socket.broadcast.to(users[socket.id].room).emit('username-changed',{
+      'id': socket.id,
+      'new' : newUsername
     });
   });
 
   socket.on('send-message',function(message){
-    if(socket.room){
-      socket.broadcast.to(socket.room).emit('get-message','@'+socket.room+' : ' + message);
-    }
+      socket.broadcast.to(users[socket.id].room).emit('get-message',{
+        id: socket.id,
+        message: message
+      });
   });
 
   socket.on('disconnect',function(){
-    socket.broadcast.to(socket.room).emit('user-left','User left');
-    console.log('user disconnected');
+    if(socket.id && users[socket.id]){
+      socket.broadcast.to(users[socket.id].room).emit('user-left', {
+         id: socket.id
+       });
+      console.log('user disconnected ' + socket.id);
+      delete users[socket.id];
+    }
+  });
+
+  socket.on('send-buzz',function(){
+      socket.broadcast.to(users[socket.id].room).emit('buzz',socket.id);
   });
 });
-
-
-
-
-//
