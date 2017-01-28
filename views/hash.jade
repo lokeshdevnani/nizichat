@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+    title Your basic web app structure
+    link(rel='stylesheet' href='/css/bootstrap.min.css')
+    link(rel='stylesheet' href='/css/style.css')
+    link(rel='stylesheet' href='/css/font-awesome-4.6.3/css/font-awesome.min.css')
+    script(src='/js/jquery.min.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/js/jquery.slimscroll.min.js')
+    script(src='/js/main.js')
+    
+  body
+    
+    div#chatbox.col-md-offset-2.col-md-8
+    
+      div#top-bar
+        h1 @
+          span#hash-id
+            = hash
+
+        div#chat-info.col-md-4
+          #user-list
+
+      div#messages
+        //- div.convo.mine
+        //-  span.username Agent 34
+        //-  img.avatar(src='/img/avatars/anonymous.jpg')
+        //-  span.message Hey Buddy, how are you son? And just wanted to tell you that you are Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        //- 
+        //- div.convo.others
+        //-   span.username Agent 88
+        //-   img.avatar(src='/img/avatars/anonymous.jpg')
+        //-   span.message Good man..
+
+      div#controls
+      
+        div#control-bar
+          input#username-change
+          button#send-buzz.btn.btn-warning
+            i.fa.fa-bullhorn
+
+        form#send-form.form-horizontal
+          textarea#message.form-control
+          button#send-btn.btn-success
+            i.fa.fa-share.fa-2x
