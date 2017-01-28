@@ -1,0 +1,218 @@
+body{
+  background: #234;
+  color: #AAA;
+}
+
+.red{
+  color: #F44336;
+}
+.green{
+  color: #00897B;
+}
+
+#hash-id{
+  margin-left: 3px;
+  color: #F44336;
+}
+
+.convo{
+  position: relative;
+  color: white;
+  margin: 3em 2em;
+  border-radius: 0 5em;
+  min-height: 3em;
+  box-shadow: 1px 1px 5px 0px black
+}
+.convo .avatar{
+  position: absolute;
+  width: 5em;
+  height: 5em;
+  border-radius: 8em;
+  border: 2px solid white;
+  top:-2em;
+}
+.convo .username{
+  position: absolute;
+  padding: 0.3em 5em;
+  max-height: 2em;
+  top:-2em;
+  background: white;
+  color: black;
+}
+
+
+
+.convo.mine{
+  background: #00897B;
+  padding: 0.5em 3em 0.5em 5em;
+  border-radius: 0 5em;
+}
+.convo.others{
+  background: #F44336;
+  padding: 0.5em 5em 0.5em 3em;
+  border-radius: 5em 0;
+}
+.convo.mine .avatar {
+  left:-0.5em;
+}
+.convo.others .avatar {
+  right:-0.5em;
+}
+
+.convo.mine .username{
+  left: 2em;
+  border-radius: 0 4em;
+}
+.convo.others .username{
+  right: 2em;
+  border-radius: 4em 0;
+}
+
+
+.room-update{
+    text-align: center;
+    padding: 0.3em;
+    margin: 0.5em;
+}
+
+
+/* Form */
+#send-form {
+  position: relative;
+  height: 4em;
+}
+#send-form #message{
+  border-radius: 5em;
+  height: 100%;
+  padding: 0.5em 8em 0.5em 2em;
+  width: 100%;
+}
+#send-form #send-btn{
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 0 4em 4em 0;
+  padding-left: 2em;
+  padding-right:2em;
+  text-shadow: 2px 2px 5px black;
+}
+
+
+
+
+
+
+/**/
+
+/*Animation*/
+.buzz{
+  animation: buzz 0.1s ease-in 10;
+}
+@keyframes buzz {
+  0%{ transform: translateX(-2%); }
+  90%{ transform: translateX(2%); }
+}
+
+/**/
+
+
+/*#chatbox -> [messages, controls, top-bar]*/
+
+#chatbox{
+  height: 100vh;
+  padding-bottom: 8em;
+  padding-top: 8em;
+}
+#top-bar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1em 2em;
+}
+#messages{
+  height: 100%;
+  overflow-y: scroll;
+}
+#controls{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1em 2em;
+}
+
+#control-bar{
+  padding: 0 2em;
+}
+#control-bar > *{
+  border-radius: 2em 2em 0 0;
+  height: 2em;
+  text-align: center;
+  border: none;
+  background: #F44336;
+  color: white;
+}
+
+#send-buzz{
+  margin-top: -3px;
+}
+
+#control-bar #username-change:hover{
+  cursor: pointer;
+}
+
+
+#top-bar{
+  border-bottom: 2px solid #aaa;
+}
+#top-bar h1{
+  margin: 0;
+}
+
+
+/* Index*/
+body#index{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#secret-form{
+  margin: 2em auto 1em auto;
+  width: 60%;
+}
+#secret-form .input-group-addon{
+  border-radius: 2em 0 0 2em;
+  background: white;
+  padding: 0 0.5em;
+  font-size: 1.5em;
+  color: black;
+}
+#input-secret{
+  margin: auto;
+  padding: 0.5em 1em;
+  border-radius: 0 3em 3em 0;
+}
+#btn-start-chat{
+  display: block;
+  margin: 1em auto;
+  border-radius: 3em;
+  padding: 0.5em 3em;
+}
+
+/**/
+
+
+/* User list*/
+#user-list > div{
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 10px;
+  background: #00897B;
+}
+
+/* User list ends*/
