@@ -1,18 +1,18 @@
 {
-  "name": "Hashtang",
+  "name": "Nizichat",
   "version": "0.0.1",
   "description": "Anonymous Chat App",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "node_modules/.bin/mocha tests/**"
+    "start": "node app.js"
   },
   "keywords": [
     "base",
     "project",
     "node",
     "express",
-    "structure"
+    "structure",
+    "socket.io"
   ],
   "author": "Lokesh Devnani",
   "license": "MIT",
