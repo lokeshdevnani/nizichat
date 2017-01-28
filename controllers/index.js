@@ -5,7 +5,6 @@ var express = require('express')
 var returnRouter = function(io){
 
   router.use('/hash', require('./hash'));
-  router.use('/users', require('./users'));
 
   router.get('/', function(req, res) {
     res.render('index');
