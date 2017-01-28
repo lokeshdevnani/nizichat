@@ -4,15 +4,15 @@ var express = require('express')
 
 var returnRouter = function(io){
 
-  router.use('/hash', require('./hash'));
-
+  //router.use('/hash', require('./hash'));
+  
   router.get('/', function(req, res) {
     res.render('index');
   });
 
   router.get('/@:hash',function(req, res){
     var hash = req.params.hash;
-    res.render('hash/hash',{hash: hash});
+    res.render('./hash',{hash: hash});
   });
   return router;
 };
